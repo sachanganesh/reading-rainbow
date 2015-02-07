@@ -5,8 +5,8 @@
   "single-instance": true,
   "window": {
     "title": "readingRainbow",
-    "width": 650,
-    "height": 650,
+    "width": 1100,
+    "height": 700,
     "min_width": 650,
     "min_height": 650,
     "toolbar": false
