@@ -5,6 +5,67 @@
 	}
 }
 
+.custom-search {
+	width:100%;
+	border-radius: 5px;
+	
+}
+
 .library {
-	background-color: #ecf0f1;
+	padding: 40px 0px 40px 0px;
+	background-color: #F5F5F5;
+	img {
+		border-radius:10px;
+		margin-bottom: 10px;
+		&:hover {
+			opacity:0.8;
+		}
+	}
+	h3 {
+		font-size:18px;
+		font-weight:300;
+		color:#7f8c8d;
+		margin-top:0px;
+		margin-bottom: 20px;
+	}
+}
+
+.menu {
+	h1 {
+		font-size:12px;
+		font-weight:400px;
+		margin-top:0px;
+		margin-bottom:20px;
+		color:#7f8c8d;
+	}
+	li {
+		list-style-type: none;
+		color:#2c3e50;
+		margin-bottom:5px;
+		padding: 5px;
+		margin-left:-5px;
+		&:hover {
+			background-color: #bdc3c7;
+			border-radius:5px;
+		}
+	}
+	ul {
+		padding-left:0px;
+	}
+}
+
+.book {
+	h2 {
+		font-size:13px;
+		font-weight:500;
+		margin-bottom:0px;
+		font-color: #2c3e50 !important;
+		margin-top:0px;
+	}
+	h4 {
+		margin-top:5px;
+		font-size:12px;
+		font-weight:400;
+		color:#95a5a6;
+	}
 }
