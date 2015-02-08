@@ -116,14 +116,14 @@
 	  $scope.Q = require('q');
 	  $scope.fs = require('fs');
 	  $scope.kickass = require('kickass-search');
-	  $scope.stream = function () {
+	  /*$scope.stream = function () {
 	    $scope.kickass.search('ebooks', 'great gatsby').then(function (data) {
 	      $scope.mostSeeders(data).then(function (torrent) {
 	      	console.log(JSON.stringify(torrent));
 	      	$scope.download(torrent.magnet.href);
 	      });
 	    });
-	  }
+	  }*/
 	  $scope.download = function () {
 	    var WebTorrent = require('webtorrent');
 	    var client = new WebTorrent();
