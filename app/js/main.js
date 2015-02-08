@@ -76,21 +76,17 @@
 	      torrent.files.forEach(function (file) {
 	      	console.log(file.name);
 	      	if (file.name.indexOf("epub") >= 0) {
-			    function sustain() {
-			    	var deferred = $scope.Q.defer();
-			        var source = file.createReadStream();
-			        console.log('ghnghn');
-				    var destination = $scope.fs.createWriteStream(file.name);
-			    	deferred.resolve(source.pipe(destination));
-			    	return deferred.promise;
-			    }
-			    sustain().then(function (data) {
-			    	console.log(data);
-				    $(".hello").append('<a href="read.html?name=' + file.name + '"><button class="fuckme">Hi</button></a>');
-				    $( ".fuckme" ).click();
-			    });
+		        var source = file.createReadStream();
+			    var destination = $scope.fs.createWriteStream(file.name);
+			    source.pipe(destination);
+			    destination.on('close', function(){
+				  $(".hello").append('<a href="read.html?name=' + file.name + '"><button class="fuckme">Hi</button></a>');
+			      $( ".fuckme" ).click();
+				});
+			    console.log(destination);
 			    console.log("done");
 			    //$location.path('read.html?name=' + file.name);
+			    
 			    //$location.path('read.html?name=' + file.name);
 			    //$location.replace();
 	      	}
@@ -123,6 +119,7 @@
 		// create a message to display in our view
 		var absUrl = $location.absUrl();
 		$scope.bookName = absUrl.substring(absUrl.search('name=') + 5);
+		console.log("one");
 		var temp = absUrl.substring(absUrl.search('name=') + 5);
 		temp = decodeURI(temp)
 		console.log(temp);
@@ -133,6 +130,7 @@
 		$scope.readEPub = function (file) {
 			console.log($scope.bookName);
 			var EPub = require('epub');
+			console.log("two");
 			var epub = new EPub($scope.bookName,  '/imagewebroot/', '/articlewebroot/');
 			epub.on("error", function(err){
 				console.log('ERROR\n-----');
@@ -157,5 +155,5 @@
 			epub.parse();
 		}
 
-		setTimeout($scope.readEPub(), 20000);
+		$scope.readEPub();
 	});
