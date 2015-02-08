@@ -3,12 +3,20 @@
 	h1 {
 		margin-top:0px;
 	}
+	a {
+		color:black;
+		text-decoration:none;
+	}
 }
 
 .custom-search {
 	width:100%;
 	border-radius: 5px;
 
+}
+
+.down {
+	margin-bottom:20px;
 }
 
 .library {
@@ -53,6 +61,10 @@
 			border-radius:5px;
 		}
 	}
+	.selected {
+		background-color: #bdc3c7;
+		border-radius:5px;
+	}
 	ul {
 		padding-left:0px;
 	}
@@ -77,4 +89,8 @@
 .detailBook {
 	padding: 50px 0px 50px 0px;
 	background-color:#F5F5F5;
+}
+
+.bookInfo {
+	padding: 30px 0px 30px 0px;
 }

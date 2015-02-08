@@ -26,7 +26,7 @@
     	<div class="container">
     		<div class="row">
     			<div class="col-sm-4">
-    				<h4>Reading Rainbow</h4>
+    				<a href="index.html"><h4>Reading Rainbow</h4></a>
     			</div>
     			<div class="col-sm-4 col-sm-offset-4">
     				<input type="text" class="custom-search" placeholder="Search" aria-describedby="sizing-addon1">
@@ -43,7 +43,7 @@
     				<div class="menu">
 	    				<h1>BROWSE</h1>
 	    				<ul>
-	    					<li>Discover</li>
+	    					<li class="selected">Discover</li>
 	    					<li>My Books</li>
 	    					<li>Search</li>
 	    				</ul>
@@ -51,7 +51,7 @@
     			</div>
     			<div class="col-sm-10">
     				<h3>Popular books</h3>
-    					<div class="row">
+    					<div class="row down" ng-repeat="i in [1, 2, 3, 4]">
     						<div class="col-sm-2">
     							<a href="book.html"><div class="book">
 	    							<img src="http://books.google.com/books/content?id=8U2oAAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api" width="110px" height="159px">
