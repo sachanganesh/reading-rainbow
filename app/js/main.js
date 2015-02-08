@@ -7,15 +7,20 @@
 
 			// route for the home page
 			.when('/', {
-				templateUrl : 'pages/home.html',
-				controller  : 'mainController'
+				templateUrl : 'views/index.html',
+				controller  : 'homeController'
+			})
+
+			.when('/read', {
+				templateUrl : 'views/read.html',
+				controller  : 'readController'
 			})
 	});
 
 	scotchApp.filter('unsafe', function($sce) { return $sce.trustAsHtml; });
 
 	// create the controller and inject Angular's $scope
-	scotchApp.controller('homeController', function($scope) {
+	scotchApp.controller('homeController', function($scope, $location) {
 		// create a message to display in our view
 	  $scope.message = 'Everyone come and see how good I look!';
 	  $scope.query;
@@ -38,11 +43,15 @@
 	    client.download(magnetUri, function (torrent) {
 	      console.log('Torrent info hash:', torrent.infoHash);
 	      torrent.files.forEach(function (file) {
-	        var source = file.createReadStream();
-		    var destination = $scope.fs.createWriteStream(file.name);
-		    source.pipe(destination);
-		    console.log(destination);
-		    console.log("done");
+	      	console.log(file.name);
+	      	if (file.name.indexOf("epub") >= 0) {
+		        var source = file.createReadStream();
+			    var destination = $scope.fs.createWriteStream(file.name);
+			    source.pipe(destination);
+			    console.log(destination);
+			    console.log("done");
+			    //$location.url('/read');
+	      	}
 	      });
 	    });
 	  }
