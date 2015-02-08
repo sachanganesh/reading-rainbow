@@ -74,4 +74,18 @@
 	scotchApp.controller('readController', function($scope) {
 		// create a message to display in our view
 		$scope.message = 'Everyone come and see how good I look!';
+		$scope.readEPub = function (file) {
+			var EPub = require('epub');
+			var epub = new EPub(file,  '/imagewebroot/', '/articlewebroot/');
+			epub.on("error", function(err){
+				console.log('ERROR\n-----');
+				throw err;
+			});
+			epub.on('end', function () {
+		    // epub is now usable
+		    console.log(epub.metadata.title);
+		    epub.getChapter('1', function (err, text) {});
+			});
+			epub.parse();
+		}
 	});

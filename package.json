@@ -5,6 +5,7 @@
   "keywords": [],
   "dependencies": {
     "concat-stream": "^1.4.7",
+    "epub": "^0.1.6",
     "kickass-search": "0.0.8",
     "q": "^1.1.2",
     "request": "^2.53.0",
