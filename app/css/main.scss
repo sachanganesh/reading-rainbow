@@ -123,6 +123,34 @@
 .text {
 	background-color:#F5F5F5;
 	padding: 30px 0px 30px 0px;
+	h1 {
+		font-family: 'Vollkorn', serif;
+		margin-bottom:20px;
+	}
+	h2, h3 {
+		font-family: 'Vollkorn', serif;
+		margin-bottom:20px;
+	}
+	p {
+		font-family: 'Vollkorn', serif;
+		font-size: 16px;
+		margin-bottom:18px;
+		line-height:30px;
+	}
+}
+
+.next {
+	border: 1px solid black;
+	padding: 5px 20px 5px 20px;
+	background-color: #F5F5F5;
+	margin-right:30px;
+}
+
+.searchbar {
+	border: 1px solid black;
+	border-radius: 0px;
+	padding: 5px 10px 5px 10px;
+	margin-top:3px;
 }
 
 #area {

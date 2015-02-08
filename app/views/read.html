@@ -27,7 +27,7 @@
     				<a href="index.html"><h4>Reading Rainbow</h4></a>
     			</div>
     			<div class="col-sm-4 col-sm-offset-4">
-    				<input type="text" class="custom-search" placeholder="Search" aria-describedby="sizing-addon1">
+    				<input type="text" class="custom-search searchbar" placeholder="Search" aria-describedby="sizing-addon1">
     			</div>
     		</div>
     	</div>
@@ -38,8 +38,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div ng-bind-html="text | unsafe"></div><br><br>
-                    <button ng-click="page = page - 1; readEPub()">Previous</button>
-                    <button ng-click="page = page + 1; readEPub()">Next</button>
+                    <button class="next" ng-click="page = page - 1;readEPub()">Previous</button>
+                    <button class="next" ng-click="page = page + 1;readEPub()">Next</button>
                 </div>
             </div>
         </div>
