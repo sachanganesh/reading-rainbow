@@ -75,7 +75,7 @@
 
 	scotchApp.controller('readController', function($scope) {
 		// create a message to display in our view
-		$scope.message = 'Everyone come and see how good I look!';
+		outerScope = $scope
 		$scope.readEPub = function (file) {
 			var EPub = require('epub');
 			var epub = new EPub('test.epub',  '/imagewebroot/', '/articlewebroot/');
@@ -83,17 +83,23 @@
 				console.log('ERROR\n-----');
 				throw err;
 			});
+
 			epub.on('end', function () {
-		    	epub.getChapter(epub.spine.contents[0].id, function(err, data){
-        if(err){
-            console.log(err);
-            return;
-        }
-        console.log("\nFIRST CHAPTER:\n");
-        $scope.text = data.substr(0,512)+"...";
-        console.log(data.substr(0,512)+"..."); // first 512 bytes
-    });
-		    	});
+			    	epub.getChapter(epub.spine.contents[4].id, function(err, data){
+					outerScope.text = "aa"
+			        if(err){
+			            console.log(err);
+			            return;
+			        }
+			        console.log("\nFIRST CHAPTER:\n");
+			        outerScope.text = data;
+			        outerScope.$apply()
+			        console.log(outerScope.text);
+			        console.log(data.substr(0,512)+"..."); // first 512 byte
+			    });
+		    });
 			epub.parse();
 		}
+
+		$scope.readEPub();
 	});
