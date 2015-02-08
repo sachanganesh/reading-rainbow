@@ -21,9 +21,10 @@
 	  $scope.Q = require('q');
 	  $scope.kickass = require('kickass-search');
 	  $scope.stream = function () {
-	    $scope.kickass.search('ebooks', 'catcher in the rye').then(function (data) {
+	    $scope.kickass.search('ebooks', 'gone girl').then(function (data) {
 	      $scope.mostSeeders(data).then(function (torrent) {
-	      	//$scope.download(torrent.magnet.href);
+	      	console.log(JSON.stringify(torrent));
+	      	$scope.download(torrent.magnet.href);
 	      });
 	    });
 	  }
@@ -34,8 +35,17 @@
 	    client.download(magnetUri, function (torrent) {
 	      console.log('Torrent info hash:', torrent.infoHash);
 	      torrent.files.forEach(function (file) {
-	        if (file.name.substring(file.name.length - 3) == 'pdf')
-	          pdf = file;
+	        // if (file.name.substring(file.name.length - 3) == 'pdf')
+	        //   pdf = file;
+	        console.log(file.path);
+	        file.getBlobURL(function (err, url) {
+	        	if (err) throw err;
+		        var a = document.createElement('a');
+		        a.download = file.name;
+		        a.href = url;
+		        a.textContent = 'Download ' + file.name;
+		        document.body.appendChild(a);
+	        });
 	      });
 	    });
 	  }
