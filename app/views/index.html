@@ -31,7 +31,9 @@
     				<a href="index.html"><h4>Reading Rainbow</h4></a>
     			</div>
     			<div class="col-sm-4 col-sm-offset-4">
-    				<input type="text" class="custom-search" placeholder="Search" aria-describedby="sizing-addon1">
+    				<form ng-submit="search();">
+    					<input type="text" ng-model="query" class="custom-search" placeholder="Search" aria-describedby="sizing-addon1">
+    				</form>
     			</div>
     		</div>
     	</div>
@@ -51,54 +53,57 @@
 	    				</ul>
 	    			</div>
     			</div>
-    			<div class="col-sm-10">
-    				<h3>Popular books</h3>
-    					<div class="row down" ng-repeat="i in [1, 2, 3, 4]">
-    						<div class="col-sm-2">
-    							<a href="book.html"><div class="book">
-	    							<img src="http://books.google.com/books/content?id=8U2oAAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api" width="110px" height="159px">
-	    							<h2>Steve Jobs</h2>
-	    							<h4>Walter Isaacson</h4>
-	    						</div></a>
-    						</div>
-    						<div class="col-sm-2">
-    							<a href="book.html"><div class="book">
-	    							<img src="http://books.google.com/books/content?id=8U2oAAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api" width="110px" height="159px">
-	    							<h2>Steve Jobs</h2>
-	    							<h4>Walter Isaacson</h4>
-	    						</div></a>
-    						</div>
-    						<div class="col-sm-2">
-    							<a href="book.html"><div class="book">
-	    							<img src="http://books.google.com/books/content?id=8U2oAAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api" width="110px" height="159px">
-	    							<h2>Steve Jobs</h2>
-	    							<h4>Walter Isaacson</h4>
-	    						</div></a>
-    						</div>
-    						<div class="col-sm-2">
-    							<a href="book.html"><div class="book">
-	    							<img src="http://books.google.com/books/content?id=8U2oAAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api" width="110px" height="159px">
-	    							<h2>Steve Jobs</h2>
-	    							<h4>Walter Isaacson</h4>
-	    						</div></a>
-    						</div>
-    						<div class="col-sm-2">
-    							<a href="book.html"><div class="book">
-	    							<img src="http://books.google.com/books/content?id=8U2oAAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api" width="110px" height="159px">
-	    							<h2>Steve Jobs</h2>
-	    							<h4>Walter Isaacson</h4>
-	    						</div></a>
-    						</div>
-    						<div class="col-sm-2">
-    							<a href="book.html"><div class="book">
-	    							<img src="http://books.google.com/books/content?id=8U2oAAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api" width="110px" height="159px">
-	    							<h2>Steve Jobs</h2>
-	    							<h4>Walter Isaacson</h4>
-	    						</div></a>
-    						</div>
-    					</div>
-
-    			</div>
+	    			<div class="col-sm-10">
+    				<div class="rowofbooks" ng-repeat="books in popular">
+    				<span ng-if="$index % 6 == 0">
+	    				<h3>Popular books</h3>
+	    					<div class="row down">
+	    						<div class="col-sm-2">
+	    							<a href="book.html?search={{popular[$index+0].name}}"><div class="book">
+		    							<img ng-src="{{popular[$index+0].image_url}}" width="110px" height="159px">
+		    							<h2>{{popular[$index+0].name}}</h2>
+		    							<h4>{{popular[$index+0].author}}</h4>
+		    						</div></a>
+	    						</div>
+	    						<div class="col-sm-2">
+	    							<a href="book.html?search={{popular[$index+1].name}}"><div class="book">
+		    							<img ng-src="{{popular[$index+1].image_url}}" width="110px" height="159px">
+		    							<h2>{{popular[$index+1].name}}</h2>
+		    							<h4>{{popular[$index+1].author}}</h4>
+		    						</div></a>
+	    						</div>
+	    						<div class="col-sm-2">
+	    							<a href="book.html?search={{popular[$index+2].name}}"><div class="book">
+		    							<img ng-src="{{popular[$index+2].image_url}}" width="110px" height="159px">
+		    							<h2>{{popular[$index+2].name}}</h2>
+		    							<h4>{{popular[$index+2].author}}</h4>
+		    						</div></a>
+	    						</div>
+	    						<div class="col-sm-2">
+	    							<a href="book.html?search={{popular[$index+3].name}}"><div class="book">
+		    							<img ng-src="{{popular[$index+3].image_url}}" width="110px" height="159px">
+		    							<h2>{{popular[$index+3].name}}</h2>
+		    							<h4>{{popular[$index+3].author}}</h4>
+		    						</div></a>
+	    						</div>
+	    						<div class="col-sm-2">
+	    							<a href="book.html?search={{popular[$index+4].name}}"><div class="book">
+		    							<img ng-src="{{popular[$index+4].image_url}}" width="110px" height="159px">
+		    							<h2>{{popular[$index+4].name}}</h2>
+		    							<h4>{{popular[$index+4].author}}</h4>
+		    						</div></a>
+	    						</div>
+	    						<div class="col-sm-2">
+	    							<a href="book.html?search={{popular[$index+5].name}}"><div class="book">
+		    							<img ng-src="{{popular[$index+5].image_url}}" width="110px" height="159px">
+		    							<h2>{{popular[$index+5].name}}</h2>
+		    							<h4>{{popular[$index+5].author}}</h4>
+		    						</div></a>
+	    						</div>
+	    					</div>
+	    					<span>
+	    			</div>
+	    		</div> <!--end row of books-->
 
     		</div>
     	</div>

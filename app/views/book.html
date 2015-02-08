@@ -43,10 +43,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
-                    <center><img src="http://books.google.com/books/content?id=FN5wMOZKTYMC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api">
-                    <h3>Catching Fire</h3>
-                    <h5>BOOK AUTHOR</h5><br>
-                    <a href="read.html"><button class="go">Read Now</button></a>
+                    <center><img ng-src="{{book.image_url}}">
+                    <h3>{{book.name}}</h3>
+                    <h5>{{book.author}}</h5><br>
+                    <button ng-click="download();"class="go">Read Now</button>
                     </center>
                 </div>
             </div>
@@ -58,11 +58,13 @@
             <div class="row">
                 <div class="col-sm-6 col-sm-offset-3">
                     <center>SYNOPSIS</center><br>
-                    <p>1985. After the death of her beloved twin brother, Felix, and the breakup with her longtime lover, Nathan, Greta Wells embarks on a radical psychiatric treatment to alleviate her suffocating depression. But the treatment has unexpected effects, and Greta finds herself transported to the lives she might have had if she'd been born in different eras.</p>
+                    <p>{{book.description}}</p>
                 </div>
             </div>
         </div>
     </div>
+
+    <div class="hello"></div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
