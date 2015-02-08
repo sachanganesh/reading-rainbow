@@ -38,7 +38,9 @@
     </div>
 
     <div class="test" ng-show="readEPub()">
-        <p>{{ text }}</p>
+        <div ng-bind-html="text | unsafe">
+
+        </div>
     </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
