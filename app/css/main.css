@@ -91,5 +91,9 @@
     font-family: 'Vollkorn', serif;
     font-size: 17px; }
 
+.text {
+  background-color: #F5F5F5;
+  padding: 30px 0px 30px 0px; }
+
 #area {
   height: 800px; }
