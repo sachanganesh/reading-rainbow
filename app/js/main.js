@@ -171,50 +171,41 @@
 	});
 
 	scotchApp.controller('readController', function($scope, $location) {
-		$scope.Q = require('q');
-
-		$scope.page = 0;
-
-		outerScope = $scope;
-
 		// create a message to display in our view
+		var absUrl = $location.absUrl();
+		$scope.bookName = absUrl.substring(absUrl.search('name=') + 5);
+		console.log("one");
+		//var temp = absUrl.substring(absUrl.search('name=') + 5);
+		//temp = decodeURI(temp)
+		//console.log(temp);
+		//$scope.bookName = temp;
+		//console.log($scope.bookName);
+		$scope.page = 0;
+		outerScope = $scope
 		$scope.readEPub = function (file) {
-			function setFoundation() {
-				var deferred = $scope.Q.defer();
-				var absUrl = $location.absUrl();
-				$scope.bookName = absUrl.substring(absUrl.search('name=') + 5);
-				var temp = absUrl.substring(absUrl.search('name=') + 5);
-				temp = decodeURI(temp)
-				console.log(temp);
-				$scope.bookName = temp;
-				console.log($scope.bookName);
-				deferred.resolve($scope.bookName);
-				return deferred.promise;
-			}
-			setFoundation().then(function (bookName) {
-				var EPub = require('epub');
-				var epub = new EPub(bookName, '/imagewebroot/', '/articlewebroot/');
-				epub.on("error", function(err){
-					console.log('ERROR\n-----');
-					throw err;
-				});
-
-				epub.on('end', function () {
-				    	epub.getChapter(epub.spine.contents[$scope.page].id, function(err, data){
-						outerScope.text = "aa"
-				        if(err){
-				            console.log(err);
-				            return;
-				        }
-				        console.log("\nFIRST CHAPTER:\n");
-				        outerScope.text = data;
-				        outerScope.$apply()
-				        console.log(outerScope.text);
-				        console.log(data.substr(0,512)+"..."); // first 512 byte
-				    });
-			    });
-				epub.parse();
+			var EPub = require('epub');
+			console.log("two");
+			var epub = new EPub(decodeURI($scope.bookName),  '/imagewebroot/', '/articlewebroot/');
+			epub.on("error", function(err){
+				console.log('ERROR\n-----');
+				throw err;
 			});
+
+			epub.on('end', function () {
+			    	epub.getChapter(epub.spine.contents[$scope.page].id, function(err, data){
+					outerScope.text = "aa"
+			        if(err){
+			            console.log(err);
+			            return;
+			        }
+			        console.log("\nFIRST CHAPTER:\n");
+			        outerScope.text = data;
+			        outerScope.$apply()
+			        console.log(outerScope.text);
+			        console.log(data.substr(0,512)+"..."); // first 512 byte
+			    });
+		    });
+			epub.parse();
 		}
 
 		$scope.readEPub();
