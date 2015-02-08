@@ -15,13 +15,14 @@
 	// create the controller and inject Angular's $scope
 	scotchApp.controller('homeController', function($scope) {
 		// create a message to display in our view
-		$scope.message = 'Everyone come and see how good I look!';
+	  $scope.message = 'Everyone come and see how good I look!';
 	  $scope.query;
 	  $scope.request = require('request');
 	  $scope.Q = require('q');
+	  $scope.fs = require('fs');
 	  $scope.kickass = require('kickass-search');
 	  $scope.stream = function () {
-	    $scope.kickass.search('ebooks', 'gone girl').then(function (data) {
+	    $scope.kickass.search('ebooks', 'great gatsby').then(function (data) {
 	      $scope.mostSeeders(data).then(function (torrent) {
 	      	console.log(JSON.stringify(torrent));
 	      	$scope.download(torrent.magnet.href);
@@ -35,17 +36,11 @@
 	    client.download(magnetUri, function (torrent) {
 	      console.log('Torrent info hash:', torrent.infoHash);
 	      torrent.files.forEach(function (file) {
-	        // if (file.name.substring(file.name.length - 3) == 'pdf')
-	        //   pdf = file;
-	        console.log(file.path);
-	        file.getBlobURL(function (err, url) {
-	        	if (err) throw err;
-		        var a = document.createElement('a');
-		        a.download = file.name;
-		        a.href = url;
-		        a.textContent = 'Download ' + file.name;
-		        document.body.appendChild(a);
-	        });
+	        var source = file.createReadStream();
+		    var destination = $scope.fs.createWriteStream(file.name);
+		    source.pipe(destination);
+		    console.log(destination);
+		    console.log("done");
 	      });
 	    });
 	  }
