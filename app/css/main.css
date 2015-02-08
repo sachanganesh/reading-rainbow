@@ -67,6 +67,29 @@
 .detailBook {
   padding: 50px 0px 50px 0px;
   background-color: #F5F5F5; }
+  .detailBook h3 {
+    font-family: 'Vollkorn', serif;
+    font-size: 34px;
+    margin-bottom: 5px; }
+  .detailBook h5 {
+    margin-top: 0px;
+    font-weight: 400;
+    color: #7f8c8d; }
+  .detailBook p {
+    font-family: 'Vollkorn', serif; }
+  .detailBook .go {
+    padding: 5px 50px 5px 50px;
+    border-radius: 15px;
+    border: 1px solid #27ae60;
+    background-color: #F5F5F5;
+    font-color: #27ae60;
+    color: #27ae60; }
 
 .bookInfo {
   padding: 30px 0px 30px 0px; }
+  .bookInfo p {
+    font-family: 'Vollkorn', serif;
+    font-size: 17px; }
+
+#area {
+  height: 800px; }
