@@ -1,0 +1,1 @@
+var scotchApp=angular.module("readingRainbow",["ngRoute"]);scotchApp.config(function(o){o.when("/",{templateUrl:"pages/home.html",controller:"mainController"})}),scotchApp.controller("homeController",function(o){o.message="Everyone come and see how good I look!"}),scotchApp.controller("bookController",function(o){o.message="Everyone come and see how good I look!"});
