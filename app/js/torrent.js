@@ -42,6 +42,7 @@ function compareBySeeders(torrents) {
 		if (mostSeededTorrent === undefined || mostSeededTorrent.seed < torrent.seed)
 			mostSeededTorrent = torrent;
 	});
+	return mostSeededTorrent;
 }
 
 /**
