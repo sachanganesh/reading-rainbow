@@ -2,14 +2,10 @@
  *	Download a torrent file given a magnet link
 */
 function downloadTorrent(magnetLink) {
-	// Instantiate torrenting client
 	var WebTorrent = require('webtorrent');
 	var client = new WebTorrent();
-	// Perform downloading operation on torrent
 	client.download(magnetLink, function (torrent) {
-		// Iterate over each file in the torrent
 		torrent.files.forEach(function (file) {
-			// If file is epub (temporary annotation)
 			if (file.name.indexOf('epub') >= 0) {
 				// var source = file.createReadStream();
 				// var destination = $scope.fs.createWriteStream(file.name);
