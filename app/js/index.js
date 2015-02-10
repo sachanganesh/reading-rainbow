@@ -1,7 +1,7 @@
 /**
- *	Determine file type of an ebook
+ *	Determine file type of an ebook and convert to EPub format
 */
-function determineFileFormat() {
+function convertToEPub() {
 	// if pdf
 	// 	convertPDF();
 	// else if mobi
