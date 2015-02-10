@@ -19,6 +19,6 @@ function convertPDF() {}
 function convertMobi() {}
 
 /**
- *	Parse ebook file and render contents
+ *	Parse ebook EPub file and render contents
 */
 function readEBook() {}
