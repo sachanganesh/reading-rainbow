@@ -1,69 +1,24 @@
 /**
- *	Download a torrent file given a magnet link
+ *	Determine file type of an ebook
 */
-function downloadTorrent(magnetLink) {
-	// Instantiate torrenting client
-	var WebTorrent = require('webtorrent');
-	var client = new WebTorrent();
-	// Perform downloading operation on torrent
-	client.download(magnetLink, function (torrent) {
-		// Iterate over each file in the torrent
-		torrent.files.forEach(function (file) {
-			// If file is epub (temporary annotation)
-			if (file.name.indexOf('epub') >= 0) {
-				// var source = file.createReadStream();
-				// var destination = $scope.fs.createWriteStream(file.name);
-				// source.pipe(destination);
-				// return destination;
-				// destination.on('close', function() {
-				// 	$(".hello").append('<a href="read.html?name=' + file.name + '"><button class="fuckme">Hi</button></a>');
-				// 	$( ".fuckme" ).click();
-				// });
-			}
-		});
-	});
+function determineFileFormat() {
+	// if pdf
+	// 	convertPDF();
+	// else if mobi
+	// 	convertMobi();
 }
 
 /**
- *	Filter a torrent file by setting a seeder floor of 5
+ *	Convert PDF file into EPub ebook file format
 */
-function filterBySeeders(torrent) {
-	if (torrent.seed >= 5) return torrent;
-}
+function convertPDF() {}
 
 /**
- *	Select a torrent from a collection by comparing by number of seeders
+ *	Convert Mobi file into EPub ebook file format
 */
-function compareBySeeders(torrents) {
-	var mostSeededTorrent;
-	torrents
-	.filter(filterBySeeders)
-	.forEach(function (torrent) {
-		if (mostSeededTorrent === undefined || mostSeededTorrent.seed < torrent.seed)
-			mostSeededTorrent = torrent;
-	});
-}
+function convertMobi() {}
 
 /**
- *	Sample array of JSON objects for testing
+ *	Parse ebook file and render contents
 */
-var testData = [
-	{
-		name: 'first',
-		seed: 6
-	},
-	{
-		name: 'second',
-		seed: 15
-	},
-	{
-		name: 'third',
-		seed: 73
-	}, {
-		name: 'fourth',
-		seed: 1
-	}, {
-		name: 'fifth',
-		seed: 4
-	}
-];
+function readEBook() {}
