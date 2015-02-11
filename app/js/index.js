@@ -1,4 +1,9 @@
 /**
+ *	Parse ebook EPub file and render contents
+*/
+function readEBook() {}
+
+/**
  *	Determine file type of an ebook and convert to EPub format
 */
 function convertToEPub() {}
@@ -6,12 +11,16 @@ function convertToEPub() {}
 /**
  *	Convert PDF file into EPub ebook file format
 */
-function convertPDF() {}
+function convertPDF(fileName) {
+	convert('pdf', fileName, 'epub', 'book.epub');
+}
 
 /**
  *	Convert Mobi file into EPub ebook file format
 */
-function convertMobi() {}
+function convertMobi() {
+	convert('mobi', fileName, 'epub', 'book.epub');
+}
 
 /**
  *	Convert any file format into another format
@@ -64,11 +73,6 @@ function convert(inputFormat, inputFile, outputFormat, outputFile) {
 		else console.log('Success');
 	});
 }
-
-/**
- *	Parse ebook EPub file and render contents
-*/
-function readEBook() {}
 
 /**
  *	Test method to determine functionality of conversion method
