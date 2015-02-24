@@ -1,7 +1,20 @@
 /**
  *	Parse ebook EPub file and render contents
 */
-function readEBook() {}
+function readEBook(bookName) {
+	var EPub = require('epub');
+	var ebook = new EPub(bookName, '/imagewebroot/', '/articlewebroot/');
+	ebook.on('error', function (err) {
+		throw err;
+	});
+	ebook.on('end', function () {
+		ebook.getChapter(ebook.spine.contents[0].id, function (err, data) {
+			if (err) throw err;
+			// Do something with 'data'..
+		});
+	});
+	ebook.parse();
+}
 
 /**
  *	Determine file type of an ebook and convert to EPub format
