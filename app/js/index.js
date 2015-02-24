@@ -35,43 +35,47 @@ function convert(inputFormat, inputFile, outputFormat, outputFile) {
     'outputformat': outputFormat,
 		'download': 'inline'
 	};
-	var convertOperation = function (options, inputFile, outputFile, callback) {
-		var apiRequest = request.post({
-			url: 'https://api.cloudconvert.com/convert',
-			followAllRedirects: true,
-			qs: options
-		})
-		.on('error', function (err) {
-			callback(err);
-		})
-		.on('response', function (res) {
-			// If response is json
-			if (res.headers['content-type'].indexOf("application/json") === 0) {
-				var str = '';
-				res.on('data', function(chunk) {
-					str += chunk;
-				});
-				res.on('end', function() {
-					var result = JSON.parse(str);
-					if (res.statusCode == 200) callback(null, result);
-					else callback(new Error(result.error ? result.error : result.message));
-				});
-			// If response is file
-			} else {
-				this.pipe(fs.createWriteStream(outputFile));
-				this.on("end", function() {
-					callback();
-				});
-			}
-		});
-		if (inputFile) apiRequest.form().append("file", fs.createReadStream(inputFile));
-	};
 	convertOperation(options, inputFile, outputFile, function(err, result) {
 		if (err)
 			return console.error(err);
 		if (result) console.log('Success: ', result);
 		else console.log('Success');
 	});
+}
+
+/**
+ *	True conversion operator method
+*/
+function convertOperation(options, inputFile, outputFile, callback) {
+	var apiRequest = request.post({
+		url: 'https://api.cloudconvert.com/convert',
+		followAllRedirects: true,
+		qs: options
+	})
+	.on('error', function (err) {
+		callback(err);
+	})
+	.on('response', function (res) {
+		// If response is json
+		if (res.headers['content-type'].indexOf("application/json") === 0) {
+			var str = '';
+			res.on('data', function(chunk) {
+				str += chunk;
+			});
+			res.on('end', function() {
+				var result = JSON.parse(str);
+				if (res.statusCode == 200) callback(null, result);
+				else callback(new Error(result.error ? result.error : result.message));
+			});
+		// If response is file
+		} else {
+			this.pipe(fs.createWriteStream(outputFile));
+			this.on('end', function() {
+				callback();
+			});
+		}
+	});
+	if (inputFile) apiRequest.form().append('file', fs.createReadStream(inputFile));
 }
 
 /**
