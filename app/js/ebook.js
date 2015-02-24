@@ -6,7 +6,15 @@ function readEBook() {}
 /**
  *	Determine file type of an ebook and convert to EPub format
 */
-function convertToEPub() {}
+function convertToEPub(file) {
+	if (file.name.indexOf('epub') >= 0) {
+		// Read EPub
+	} else if (file.name.indexOf('pdf')) {
+		// Read PDF
+	} else if (file.name.indexOf('mobi')) {
+		// Read Mobi
+	}
+}
 
 /**
  *	Convert PDF file into EPub ebook file format
