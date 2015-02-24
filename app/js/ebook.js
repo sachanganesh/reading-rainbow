@@ -39,7 +39,7 @@ function convertPDF(fileName) {
 /**
  *	Convert Mobi file into EPub ebook file format
 */
-function convertMobi() {
+function convertMobi(fileName) {
 	convert('mobi', fileName, 'epub', 'book.epub');
 }
 

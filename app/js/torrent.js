@@ -1,7 +1,7 @@
 /**
  *	Download a torrent file given a magnet link
 */
-function downloadTorrent(magnetLink) {
+function downloadTorrent(magnetLink, callback) {
 	var WebTorrent = require('webtorrent');
 	var client = new WebTorrent();
 	client.download(magnetLink, function (torrent) {
